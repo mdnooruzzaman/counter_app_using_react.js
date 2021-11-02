@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    count : 0,
+    tags : ['noor' , 'samsi' , 'sonu']
+  };
+
+  handleEvent = () => {
+    this.setState({count : this.state.count +1})
+    console.log("Increment clicked");
+  }
+    render(){
+      let cal = "btn m-2 btn-";
+      cal += this.state.count === 0 ? "warning" : "primary";
+    return (
+        <div className="App">
+            <span className = {cal}>{this.formateCount()}</span>
+            <button onClick = {this.handleEvent} className = "btn btn-primary">Increment++</button>
+          
+        </div>
+    );
+  }
+  formateCount(){
+    return this.state.count === 0 ? 'Zero' : this.state.count;
+  }
 }
 
 export default App;
